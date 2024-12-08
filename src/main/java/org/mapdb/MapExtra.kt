@@ -1,7 +1,5 @@
 package org.mapdb
 
-import org.eclipse.collections.api.block.procedure.Procedure
-import java.util.EventListener
 import java.util.concurrent.ConcurrentMap
 import java.util.concurrent.ConcurrentNavigableMap
 import java.util.function.BiConsumer

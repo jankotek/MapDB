@@ -3,7 +3,6 @@ package org.mapdb.volume;
 import org.mapdb.CC;
 import org.mapdb.DBException;
 import org.mapdb.DataInput2;
-import org.mapdb.volume.CleanerUtil;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

@@ -2,14 +2,14 @@ package org.mapdb.serializer;
 
 import org.mapdb.Serializer;
 
-import java.util.HashMap;
-
-import org.mapdb.Serializer;
-import static org.mapdb.Serializer.*;
-
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.*;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+import static org.mapdb.Serializer.*;
 
 /**
  * Created by jan on 2/28/16.

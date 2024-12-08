@@ -1,7 +1,5 @@
 package org.mapdb;
 
-import org.jetbrains.annotations.NotNull;
-
 import java.io.IOException;
 import java.util.Arrays;
 

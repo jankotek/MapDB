@@ -4,12 +4,7 @@ import org.mapdb.CC;
 import org.mapdb.DataInput2;
 import org.mapdb.DataOutput2;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectStreamClass;
-import java.io.OutputStream;
+import java.io.*;
 
 /**
  * Created by jan on 2/28/16.

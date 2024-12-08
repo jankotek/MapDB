@@ -3,12 +3,12 @@ package org.mapdb
 import org.eclipse.collections.impl.list.mutable.primitive.LongArrayList
 import org.eclipse.collections.impl.map.mutable.primitive.LongLongHashMap
 import org.eclipse.collections.impl.map.mutable.primitive.LongObjectHashMap
+import org.mapdb.DataIO.*
+import org.mapdb.StoreDirectJava.*
 import org.mapdb.volume.ReadOnlyVolume
 import org.mapdb.volume.SingleByteArrayVol
 import org.mapdb.volume.Volume
 import org.mapdb.volume.VolumeFactory
-import org.mapdb.DataIO.*
-import org.mapdb.StoreDirectJava.*
 import java.io.File
 import java.util.*
 
