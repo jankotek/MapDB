@@ -711,7 +711,10 @@ public abstract class AbstractMutableLongLongMapTestCase extends AbstractLongLon
     {
         MutableLongIterator iterator = this.classUnderTest().longIterator();
         Assert.assertTrue(iterator.hasNext());
-        Verify.assertThrows(IllegalStateException.class, iterator::remove);
+        Verify.assertThrows(IllegalStateException.class, ()->{
+            iterator.remove();
+            return null;
+        });
     }
 
     @Test
@@ -721,6 +724,9 @@ public abstract class AbstractMutableLongLongMapTestCase extends AbstractLongLon
         Assert.assertTrue(iterator.hasNext());
         iterator.next();
         iterator.remove();
-        Verify.assertThrows(IllegalStateException.class, iterator::remove);
+        Verify.assertThrows(IllegalStateException.class, ()->{
+            iterator.remove();
+            return null;
+        });
     }
 }

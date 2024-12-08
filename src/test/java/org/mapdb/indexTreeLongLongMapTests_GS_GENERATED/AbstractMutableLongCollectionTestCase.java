@@ -369,12 +369,7 @@ public abstract class AbstractMutableLongCollectionTestCase extends AbstractLong
             iterator.remove();
         }
         Verify.assertEmpty(longIterable);
-        Verify.assertThrows(NoSuchElementException.class, new Runnable() {
-            @Override
-            public void run() {
-                iterator.next();
-            }
-        });
+        Verify.assertThrows(NoSuchElementException.class, iterator::next);
     }
 
     @Test
@@ -383,11 +378,9 @@ public abstract class AbstractMutableLongCollectionTestCase extends AbstractLong
         MutableLongCollection longIterable = this.classUnderTest();
         final MutableLongIterator iterator = longIterable.longIterator();
         Assert.assertTrue(iterator.hasNext());
-        Verify.assertThrows(IllegalStateException.class, new Runnable() {
-            @Override
-            public void run() {
-                iterator.remove();
-            }
+        Verify.assertThrows(IllegalStateException.class, ()->{
+            iterator.remove();
+            return null;
         });
     }
 
@@ -399,11 +392,9 @@ public abstract class AbstractMutableLongCollectionTestCase extends AbstractLong
         Assert.assertTrue(iterator.hasNext());
         iterator.next();
         iterator.remove();
-        Verify.assertThrows(IllegalStateException.class,new Runnable() {
-            @Override
-            public void run() {
-                iterator.remove();
-            }
+        Verify.assertThrows(IllegalStateException.class, ()->{
+            iterator.remove();
+            return null;
         });
 
     }

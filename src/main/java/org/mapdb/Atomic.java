@@ -23,9 +23,6 @@
  */
 package org.mapdb;
 
-import java.io.DataInput;
-import java.io.IOException;
-
 /**
  * <p>
  * A small toolkit of classes that support lock-free thread-safe

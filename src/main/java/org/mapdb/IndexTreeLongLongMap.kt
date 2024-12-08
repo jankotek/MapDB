@@ -1,5 +1,6 @@
 package org.mapdb
 
+import org.eclipse.collections.api.LazyIterable
 import org.eclipse.collections.api.LazyLongIterable
 import org.eclipse.collections.api.LongIterable
 import org.eclipse.collections.api.RichIterable
@@ -11,7 +12,6 @@ import org.eclipse.collections.api.block.predicate.primitive.LongPredicate
 import org.eclipse.collections.api.block.procedure.Procedure
 import org.eclipse.collections.api.block.procedure.primitive.LongLongProcedure
 import org.eclipse.collections.api.block.procedure.primitive.LongProcedure
-import org.eclipse.collections.api.collection.MutableCollection
 import org.eclipse.collections.api.collection.primitive.ImmutableLongCollection
 import org.eclipse.collections.api.collection.primitive.MutableLongCollection
 import org.eclipse.collections.api.iterator.MutableLongIterator
@@ -30,10 +30,9 @@ import org.eclipse.collections.impl.factory.primitive.LongLongMaps
 import org.eclipse.collections.impl.factory.primitive.LongSets
 import org.eclipse.collections.impl.lazy.AbstractLazyIterable
 import org.eclipse.collections.impl.lazy.primitive.LazyLongIterableAdapter
-import org.eclipse.collections.impl.list.mutable.ArrayListAdapter
-import org.eclipse.collections.impl.list.mutable.primitive.LongArrayList
 import org.eclipse.collections.impl.map.mutable.primitive.LongLongHashMap
 import org.eclipse.collections.impl.primitive.AbstractLongIterable
+import org.eclipse.collections.impl.set.mutable.primitive.BoxedMutableLongSet
 import org.eclipse.collections.impl.set.mutable.primitive.LongHashSet
 import org.eclipse.collections.impl.set.mutable.primitive.SynchronizedLongSet
 import org.eclipse.collections.impl.set.mutable.primitive.UnmodifiableLongSet
@@ -110,9 +109,9 @@ public class IndexTreeLongLongMap(
 
     override fun containsValue(value: Long): Boolean {
         //TODO perf
-        return treeFold(rootRecid, store, levels, false, TreeTraverseCallback { k, v, b: Boolean ->
+        return treeFold(rootRecid, store, levels, false) { k, v, b: Boolean ->
             b || v == value
-        })
+        }
     }
 
 
@@ -611,6 +610,13 @@ public class IndexTreeLongLongMap(
                     return this@IndexTreeLongLongMap.size()
                 }
 
+                override fun boxed(): MutableSet<Long> {
+                    return BoxedMutableLongSet(this)
+                }
+
+                override fun cartesianProduct(set: LongSet?): LazyIterable<LongLongPair> {
+                    return LongSets.cartesianProduct<Any, Any>(this, set)
+                }
             }
 
     override fun keySet(): MutableLongSet {
@@ -823,7 +829,6 @@ internal abstract open class AbstractMutableLongCollection :
         LongIterableIterate.appendString(this, appendable, start, separator, end)
     }
 
-
     override fun toArray(): LongArray? {
         var ret = LongArray(32)
         var pos = 0;
@@ -897,8 +902,6 @@ internal abstract open class AbstractMutableLongCollection :
         return ret
     }
 
-
-
     override fun add(element: Long): Boolean {
         throw UnsupportedOperationException("Cannot call add() on " + this.javaClass.simpleName)
     }
@@ -927,7 +930,6 @@ internal abstract open class AbstractMutableLongCollection :
         throw UnsupportedOperationException("Cannot call withoutAll() on " + this.javaClass.simpleName)
     }
 
-
     override fun equals(obj: Any?): Boolean {
         if (this === obj) {
             return true
@@ -937,7 +939,6 @@ internal abstract open class AbstractMutableLongCollection :
         }
         return this.size() == obj.size() && this.containsAll(obj)
     }
-
 
     override fun hashCode(): Int {
         var ret = 0;

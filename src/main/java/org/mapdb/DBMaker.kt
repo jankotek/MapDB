@@ -2,7 +2,6 @@ package org.mapdb
 
 import org.mapdb.volume.*
 import java.io.File
-import java.lang.ref.WeakReference
 
 
 /**

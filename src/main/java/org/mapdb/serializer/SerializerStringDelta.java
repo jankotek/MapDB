@@ -1,6 +1,8 @@
 package org.mapdb.serializer;
 
-import org.mapdb.*;
+import org.mapdb.DataIO;
+import org.mapdb.DataInput2;
+import org.mapdb.DataOutput2;
 
 import java.io.IOException;
 
